@@ -1,0 +1,65 @@
+# ==============================================================================
+# ClipMgr Configuration File
+# Location: ~/.config/clipmgr/config.yaml
+# ==============================================================================
+
+storage:
+  # Auto-purge unpinned clips older than this retention window (in days)
+  retention_days: 30
+
+  # Maximum size per clip in bytes (default: 1048576 = 1MB)
+  # Clips larger than this threshold are safely discarded to protect performance
+  max_size_bytes: 1048576
+
+  # Deduplication strategy when copying identical content:
+  # - 'bump': Move existing entry to top of history with updated timestamp (recommended)
+  # - 'ignore': Skip logging without changing order
+  # - 'allow': Always record duplicate rows
+  deduplicate_strategy: bump
+
+  # Transparent encryption at rest for the SQLite database
+  encryption:
+    enabled: false
+
+privacy:
+  # Automatically inspect clipboard data for secrets, passwords, and tokens
+  detect_secrets: true
+
+  # Detect when content is copied from password managers (Bitwarden, 1Password, KeePass, etc.)
+  detect_password_managers: true
+
+  # Action when sensitive content is detected:
+  # - 'flag': Store with sensitive flag, mask preview in UI, exclude from search by default
+  # - 'skip': Discard sensitive content completely (never touches SQLite disk)
+  on_sensitive: flag
+
+daemon:
+  # Backend listener mode: 'auto', 'x11', or 'wayland'
+  # 'auto' automatically detects session type from $XDG_SESSION_TYPE
+  backend: auto
+
+  # Detect active application window title and process name
+  detect_source_app: true
+
+  # Extended support for image data
+  capture_images: false
+
+ui:
+  # Window dimensions
+  width: 780
+  max_height: 520
+  max_results: 25
+
+  # Hide popup window when it loses focus
+  hide_on_focus_lost: true
+
+  # Show side rich syntax preview pane
+  show_preview_pane: true
+
+  # Direct paste into previous window on Shift+Enter
+  paste_on_shift_enter: true
+
+hotkey:
+  # Global hotkey trigger (Keybinder on X11 or GNOME custom shortcut on Wayland)
+  binding: "Ctrl+Alt+V"
+  gnome_shortcut_enabled: true
