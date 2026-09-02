@@ -1,0 +1,16 @@
+[Unit]
+Description=QuickLaunch - Advanced Quick Launcher Daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/quicklaunch daemon
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+Environment=DISPLAY=:0
+Environment=XDG_CURRENT_DESKTOP=ubuntu:GNOME
+
+[Install]
+WantedBy=graphical-session.target
